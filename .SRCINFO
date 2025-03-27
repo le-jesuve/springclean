@@ -7,6 +7,6 @@ pkgbase = springclean
 	license = GPL3
 	depends = bash
 	source = https://github.com/le-jesuve/springclean/releases/download/v1.0.0/springclean.sh
-	sha256sums = da2d70d3cf04155420e9d91611e938a40a174cf75aacf4517155483670a13ee1
+	sha256sums = 809d960fec844b8ca685558776d3acfa81c5de8a83f10b1f4ad04c5d198c587a
 
 pkgname = springclean

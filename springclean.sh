@@ -30,7 +30,7 @@ declare manual_mode=0
 
 load_config() {
   # local CONFIG_FILE="$HOME/.config/springclean/springclean.conf"
-  local CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/springclean"
+  local CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}"
   local CONFIG_FILE="$CONFIG_DIR/springclean.conf"
   if [[ ! -f "$CONFIG_FILE" ]]; then
     echo "No config found, writing template" >&2

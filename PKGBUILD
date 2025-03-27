@@ -8,7 +8,7 @@ url="https://github.com/le-jesuve/springclean"
 license=('GPL3')
 depends=('bash')
 source=("$url/releases/download/v$pkgver/springclean.sh")
-sha256sums=('809d960fec844b8ca685558776d3acfa81c5de8a83f10b1f4ad04c5d198c587a')
+sha256sums=('cbb7c6e7ccedb7061bd7454cb1e64c653e1f8ca2b1f66ba6602427e8d5486f34')
 
 package() {
   install -Dm755 springclean.sh "$pkgdir/usr/bin/springclean"

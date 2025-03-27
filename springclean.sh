@@ -14,6 +14,7 @@
 # Dependencies: bash
 #
 # Usage: Organizes files by extension
+#
 
 declare -A default_dirs=(
   [cpp]="cpp"
@@ -28,10 +29,15 @@ declare -a found_extensions
 declare manual_mode=0
 
 load_config() {
-  local CONFIG_FILE="$HOME/.config/springclean/springclean.conf"
+  # local CONFIG_FILE="$HOME/.config/springclean/springclean.conf"
+  local CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/springclean"
+  local CONFIG_FILE="$CONFIG_DIR/springclean.conf"
   if [[ ! -f "$CONFIG_FILE" ]]; then
     echo "No config found, writing template" >&2
-    mkdir -p "$HOME/.config/springclean"
+    mkdir -p "$CONFIG_DIR" || {
+      echo "Failed to create config directory" >&2
+      return 1
+    }
     touch "$CONFIG_FILE"
     printf "# Custom directory mappings for filetypes\n# Format: EXTENSION=DIRECTORYNAME\n\n# Documents & Text\npdf=documents\ntxt=text\nmd=markdown\nodt=documents\nods=spreadsheets\nodp=presentations\ncsv=data\njson=data\nxml=data\nrtf=documents\n\n# Programming\nsh=scripts\nbash=scripts\nzsh=scripts\npy=python\npl=perl\nrb=ruby\nc=code\ncpp=code\nh=headers\ngo=golang\nrs=rust\njava=java\nclass=java\njar=java\njs=javascript\nts=typescript\nphp=php\nlua=lua\n\n# System & Config\nconf=config\ncfg=config\nyml=config\nservice=systemd\nsocket=systemd\ntimer=systemd\nlock=system\nlog=logs\npkg.tar.zst=arch_packages\nPKGBUILD=arch_builds\n\n# Archives\nzip=archives\ntar=archives\ngz=archives\nxz=archives\nzst=archives\nrar=archives\n7z=archives\n\n# Media - Images\njpg=images\npng=images\ngif=images\nwebp=images\ntiff=images\nsvg=vector\npsd=photoshop\nxcf=gimp\nkra=krita\n\n# Media - Audio\nmp3=audio\nflac=audio\nwav=audio\naiff=audio\nogg=audio\nmidi=midi\nflp=flstudio\nal=ableton\n\n# Media - Video\nmp4=video\nmkv=video\navi=video\nmov=video\nwebm=video\nflv=video\nblend=blender\naep=after_effects\n\n# 3D & Models\nfbx=3d_models\nobj=3d_models\nstl=3d_print\nma=maya\nmb=maya\n\n# Virtualization\niso=disk_images\nimg=disk_images\nqcow2=virtual_machines\nvdi=virtual_machines\n\n# Security & Keys\npem=certificates\ncrt=certificates\nkey=keys\ngpg=encrypted\n\n# Desktop & Themes\ndesktop=shortcuts\ntheme=themes\nicons=icons\n\n# Temporary\nbak=backups\ntmp=temporary\n" >"$CONFIG_FILE"
     return 1

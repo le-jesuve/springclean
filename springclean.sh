@@ -1,6 +1,5 @@
 #!/usr/bin/env  bash
 
-#!/usr/bin/env bash
 # springclean
 # Maintainer: Luke Byars <le.jesuve at gmail dot com>
 ##
